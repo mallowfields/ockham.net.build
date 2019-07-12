@@ -79,4 +79,8 @@ function Join-HashTables {
   , $result
 }
 
-Export-ModuleMember -Function Confirm-Module, Join-HashTables, Test-IsEmpty, Test-IsNotEmpty, Write-Banner, Write-Bar
+function newobj([hashtable]$properties) {
+  New-Object psobject -Property $properties
+}
+
+Export-ModuleMember -Function newobj, Confirm-Module, Join-HashTables, Test-IsEmpty, Test-IsNotEmpty, Write-Banner, Write-Bar
