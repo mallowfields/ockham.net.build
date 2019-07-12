@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <GrandParentProp>test-grandparent</GrandParentProp> 
+    <TestProp Condition="'$(ExcludeProp)' == ''">Initial Value</TestProp>  
+  </PropertyGroup>
+  
+  <Import Project=".\props.csproj" />
+  <Import Project=".\specialprops.csproj" Condition="'$(IncludeSpecialProps)' == 'True'" />
+
+  <PropertyGroup>
+    <DefaultProp>new value</DefaultProp>
+    <AssemblyName>test.lib</AssemblyName>
+  </PropertyGroup>
+   
+</Project>

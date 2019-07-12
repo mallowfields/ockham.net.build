@@ -1,0 +1,5 @@
+﻿<Project> 
+  <PropertyGroup>
+    <TestProp>Special Value</TestProp>
+  </PropertyGroup>
+</Project>

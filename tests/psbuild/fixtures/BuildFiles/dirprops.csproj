@@ -1,0 +1,7 @@
+﻿<Project>
+  <PropertyGroup>
+    <Product>Test</Product>
+    <GrandparentProp>grandparent</GrandparentProp>
+    <BaseProp>base</BaseProp>
+  </PropertyGroup>
+</Project>

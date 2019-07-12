@@ -1,0 +1,40 @@
+﻿<Project>
+
+  <Import Project="..\dirprops.csproj" />
+
+  <PropertyGroup>
+    <ParentProp>parent</ParentProp>
+    <DefaultProp>default</DefaultProp>
+  </PropertyGroup>
+  
+  <!-- A comment -->
+  
+  <PropertyGroup>
+    <MajorVersion>1</MajorVersion>
+    <MinorVersion>2</MinorVersion>
+     
+    <!-- Another comment -->
+    
+    <BuildVersion>3</BuildVersion>
+    <MinorBuildVersion>98</MinorBuildVersion>
+    <SemVer>$(MajorVersion).$(MinorVersion).$(BuildVersion)</SemVer>
+    <FileVersion>$(SemVer).$(MinorBuildVersion)</FileVersion>
+    <BaseProp>overridden</BaseProp>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="('$(Configuration)'=='Release') And ('$(ReleaseMode)'=='Release')">
+    <PackageVersion>$(SemVer)</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="('$(Configuration)'=='Release') And ('$(ReleaseMode)'!='Release')">
+    <PackageVersion>$(SemVer)-rc$(MinorBuildVersion)</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="('$(Configuration)'=='Debug')">
+    <PackageVersion>$(SemVer)-rc$(MinorBuildVersion)-debug</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="('$(ForceDefault)' == 'True') OR ('$(TestProp)'=='')">
+    <TestProp>Default Value</TestProp>
+  </PropertyGroup>
+</Project>
