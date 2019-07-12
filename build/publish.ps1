@@ -33,14 +33,17 @@ Write-Host "Loading $ModuleName version $version"
 }
 
 $publishDir = Join-FSPath $thisDir ..\publish -Resolve
+$toolsDir   = Join-FSPath $thisDir ..\ref\ockham.net\tools
 $srcDir     = Join-FSPath $thisDir '..\src\psbuild' -Resolve
 
-if(!(Test-Path $publishDir)) { mkdir $publishDir | Out-Null }
+foreach($dir in @($publishDir, $toolsDir)) {
+  if(!(Test-Path $dir)) { mkdir $dir | Out-Null }
 
-Publish-Module basicutils $publishDir -InputDir $srcDir 
-Publish-Module pathutils $publishDir -InputDir $srcDir 
-Publish-Module netbuild $publishDir -InputDir $srcDir 
-Publish-Module nettest $publishDir  -InputDir $srcDir 
-Publish-Module netpack $publishDir  -InputDir $srcDir 
-Publish-Module netscaffold $publishDir -InputDir $srcDir 
-Publish-Module vsdata $publishDir  -InputDir $srcDir 
+  Publish-Module basicutils $dir -InputDir $srcDir 
+  Publish-Module pathutils $dir -InputDir $srcDir 
+  Publish-Module netbuild $dir -InputDir $srcDir 
+  Publish-Module nettest $dir  -InputDir $srcDir 
+  Publish-Module netpack $dir  -InputDir $srcDir 
+  Publish-Module netscaffold $dir -InputDir $srcDir 
+  Publish-Module vsdata $dir  -InputDir $srcDir 
+}
